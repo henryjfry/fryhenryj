@@ -10,8 +10,10 @@ import xbmcgui
 import xbmcplugin
 import json
 
+db_path = str(xbmc.translatePath('special://database')) + 'MyVideos116.db'
+
 import sqlite3
-con = sqlite3.connect('/home/osmc/.kodi/userdata/Database/MyVideos116.db')
+con = sqlite3.connect(db_path)
 cur = con.cursor()
 
 addon_handle = int(sys.argv[1])
