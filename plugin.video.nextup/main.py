@@ -9,7 +9,7 @@ import xbmc
 import xbmcgui
 import xbmcplugin
 import json
-from unidecode import unidecode
+#from unidecode import unidecode
 
 db_path = str(xbmc.translatePath('special://database')) + 'MyVideos116.db'
 
