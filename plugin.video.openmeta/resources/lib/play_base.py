@@ -98,11 +98,13 @@ def resolve_player(player, lister, params):
 			if not lang in params:
 				continue
 			parameters = params[lang]
+			
 #CHANGES		link = text.apply_parameters(text.to_unicode(command['link']), parameters)
 #			link = text.apply_parameters(text.to_unicode(command['link']), parameters).replace(' & ','%20%26%20')
 #modified the following line to replace " & " with " and "
 			link = text.apply_parameters(text.to_unicode(command['link']), parameters).replace(' & ',' and ')
 #			xbmc.log(link, level=4)
+
 			if link == 'movies' and player.media == 'movies':
 				video = tools.get_movie_from_library(parameters['imdb'])
 				if video:
