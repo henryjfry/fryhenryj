@@ -5,7 +5,8 @@ from resources.lib import meta_info
 from resources.lib import play_base
 from resources.lib import meta_players
 from resources.lib.xswift2 import plugin
-#added to process dict "params[lang]" and change ' & ' to ' and '
+#added to process dict 
+#change "params[lang]" and change ' & ' to ' and '
 import ast
 
 NTH = {1: 'first', 2: 'second', 3: 'third', 5: 'fifth', 8: 'eigth'}
