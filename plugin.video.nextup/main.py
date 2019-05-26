@@ -53,7 +53,20 @@ for k in sql_result:
 
     list_item.setInfo('video', {'title': episode_details['episodedetails']['title'],'genre': str(k[4]), 'plot': episode_details['episodedetails']['plot'], 'path': episode_details['episodedetails']['file'],'premiered': episode_details['episodedetails']['firstaired'], 'aired': episode_details['episodedetails']['firstaired'], 'tvshowtitle': episode_details['episodedetails']['showtitle'], 'season': episode_details['episodedetails']['season'], 'episode': episode_details['episodedetails']['episode'], 'dbid': str(k[0]), 'mediatype': 'episode'})
 
-    list_item.setArt({ 'poster': tvshow_details['art']['poster'], 'thumb': tvshow_details['thumbnail'], 'banner' : tvshow_details['art']['banner']})
+    #list_item.setArt({ 'poster': tvshow_details['art']['poster'], 'thumb': tvshow_details['thumbnail'], 'banner' : tvshow_details['art']['banner']})
+    try:
+        list_item.setArt({ 'poster': tvshow_details['art']['poster'], 'thumb': tvshow_details['thumbnail'], 'banner' : tvshow_details['art']['banner']})
+        xbmc.log('LOG1===>TRY',level=2)
+    except: 
+        try:
+            list_item.setArt({ 'poster': tvshow_details['art']['poster'], 'thumb': tvshow_details['thumbnail']})
+            xbmc.log('LOG2===>EXCEPT',level=2)
+        except:
+            try:
+                list_item.setArt({ 'poster': tvshow_details['art']['poster']})
+                xbmc.log('LOG3===>ELSE',level=2)
+            except:
+                pass
 
     url = episode_details['episodedetails']['file']
     list_item.setProperty('IsPlayable', 'true')
