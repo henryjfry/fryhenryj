@@ -5,9 +5,11 @@ from resources.lib import meta_info
 from resources.lib import play_base
 from resources.lib import meta_players
 from resources.lib.xswift2 import plugin
+
 #added to process dict 
 #change "params[lang]" and change ' & ' to ' and '
 import ast
+
 
 NTH = {1: 'first', 2: 'second', 3: 'third', 5: 'fifth', 8: 'eigth'}
 DCS = {2: 'twenty', 3: 'thirty', 4: 'fourty', 5: 'fifty', 6: 'sixty'}
@@ -52,10 +54,12 @@ def play_episode(id, season, episode):
 		params[lang]['info'] = show_info
 		params[lang] = text.to_unicode(params[lang])
 
+		
         params[lang] = ast.literal_eval(repr(params[lang]).replace(' & ',' and '))
 #        xbmc.log('LOGHERE-----'+str(params[lang])  , level=2)
 	link = play_base.on_play_video(players, params, trakt_ids)
 
+	
 	if link:
 		plugin.setProperty('plugin.video.openmeta.data', json.dumps(
 			{
