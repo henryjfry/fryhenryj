@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addons>
+<addon id="plugin.video.nextup" version="0.0.5" name="Next Up Episodes" provider-name="fryhenryj">
+<requires>
+  <import addon="xbmc.python" version="2.25.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource" library="main.py">
+  <provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+  <summary lang="en">Next Up Episodes - Gets the next episodes to watch for in progress TV shows in the library and sorts by airdate, descending </summary>
+  <description lang="en_GB">Produces a list of episodes in descending order of air date for in progress shows in the library, for use with skin widgets (e.g. Skin Helper Service Widgets=>Video Addons=>Next Up Episodes</description>
+  <disclaimer lang="en_GB">Will only list next up episodes for shows in the library, has no configuration options.  DATABASE VERSION IS HARDCODED TO "MyVideos116.db" (KODI V18???) FUTURE VERSIONS MAY FIX THIS BUT FOR NOW OTHER VERSIONS OF KODI/VIDEOS DATABASE MAY NOT WORK!!</disclaimer>
+  <assets>
+    <icon>icon.png</icon>
+    <fanart>fanart.jpg</fanart>
+  </assets>
+</extension>
+</addon>
+</addons>
