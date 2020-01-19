@@ -1,2 +1,2 @@
-# fryhenryj
-Kodi Addons
+# plugin.video.openmeta
+OpenMeta Kodi Add-on
