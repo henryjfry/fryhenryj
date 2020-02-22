@@ -82,7 +82,7 @@ class XBMCPlayer( xbmc.Player ):
 	imdb_id = json_object['result']['VideoPlayer.IMDBNumber']
 	if imdb_id == '':
 		try: 
-			imdb_id = re.search('imdb=(.+?)&mode', json_object['result']['Player.Filenameandpath']).group(1)
+#			imdb_id = re.search('imdb=(.+?)&mode', json_object['result']['Player.Filenameandpath']).group(1)
 			imdb_id = re.search('imdb=(.+?)&', json_object['result']['Player.Filenameandpath']).group(1)
 		except:
 			imdb_id = '' 
@@ -124,7 +124,7 @@ class XBMCPlayer( xbmc.Player ):
 
 		if imdb_id == '':
 			try: 
-				imdb_id = re.search('imdb=(.+?)&mode', json_object['result']['Player.Filenameandpath']).group(1)
+#				imdb_id = re.search('imdb=(.+?)&mode', json_object['result']['Player.Filenameandpath']).group(1)
 				imdb_id = re.search('imdb=(.+?)&', json_object['result']['Player.Filenameandpath']).group(1)
 			except:
 				imdb_id = '' 
