@@ -123,6 +123,12 @@ class XBMCPlayer( xbmc.Player ):
 		title = json_object['result']['VideoPlayer.Title'] + ' (' + json_object['result']['VideoPlayer.Year'] + ')'
 
 		if imdb_id == '':
+			try: 
+				imdb_id = re.search('imdb=(.+?)&mode', json_object['result']['Player.Filenameandpath']).group(1)
+				imdb_id = re.search('imdb=(.+?)&', json_object['result']['Player.Filenameandpath']).group(1)
+			except:
+				imdb_id = '' 
+		if imdb_id == '':
 			try:
 				imdb_url = str(json_object['result']['Player.Filenameandpath'])
 				m = re.findall('=tt'+r'\d{6,7}', imdb_url)
