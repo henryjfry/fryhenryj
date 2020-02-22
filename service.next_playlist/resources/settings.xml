@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<settings>
+    <category label="Next Up Episodes Method">
+        <setting label="Select Next Up Episodes Method to Use" type="enum"   id="sql_method" values="1|2" default="1"/>
+        <setting label="update_widget_method (reload skin)" type="action" action="RunPlugin(plugin://service.next_playlist/update_widget_method)" option="close"/>
+        <setting label="1.In Progress shows only ordered by airdate" type="lsep"/>
+        <setting type="bool" visible="false" /> <!-- Separate multiple labels-->
+        <setting label="2.All TV shows ordered by airdate" type="lsep"/>
+        <setting type="bool" visible="false" /> <!-- Separate multiple labels-->
+    </category>
+    <category label="Playlist Sort order">
+        <setting id="sort_order_str" type="select" label="Sort order" values="dateadded|year|date|episode|name|none|playlist|lastplayed|airdate|title|tvshow|votes|myrating|rating|duration|playcount|season|file|path|studio|mpaarating|random" default = "year"/>
+        <setting label="update_widget" type="action" action="RunPlugin(plugin://service.next_playlist/update_widget)" option="close"/>
+        <setting id="sort_order_direction" type="select" label="asc/desc" values="asc|desc" default="desc"/>
+    </category>
+	<category label="MYSQL Connection Details">
+	<setting label="MySQL Enabled" type="bool" id="mysql_enabled" default="false"/>
+	<setting label="MySQL Username" visible="eq(-1,true)" type="text" id="username" default="username"/>
+	<setting label="MySQL Password" visible="eq(-2,true)" type="text" id="password" default="password" option="hidden" enable="!eq(-1,)"/>
+	<setting label="MySQL Host" visible="eq(-3,true)" type="text" id="host" default="localhost"/>
+	<setting label="MySQL Port"  visible="eq(-4,true)" type="number" id="port" default="5555"/>
+	<setting label="MySQL DB Name" visible="eq(-5,true)" type="text" id="db_name" default="MYSQL_DB"/>
+    </category>
+</settings>
