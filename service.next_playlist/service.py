@@ -1,6 +1,7 @@
 import time
 import xbmc
 import xbmcaddon
+import xbmcgui
 import json
 import re
 import urllib
@@ -12,6 +13,8 @@ import os.path
 __addon__        = xbmcaddon.Addon()
 __addonid__      = __addon__.getAddonInfo('id')
 
+global next_url
+next_url = ''
 db_path = str(xbmc.translatePath('special://database')) + 'MyVideos116.db'
 update_playlist_path = str(xbmc.translatePath('special://userdata').replace('userdata','addons'))+str(__addonid__)
 
@@ -79,6 +82,7 @@ class XBMCPlayer( xbmc.Player ):
         json_result = xbmc.executeJSONRPC('{"jsonrpc":"2.0","method":"XBMC.GetInfoLabels","params": {"labels":["VideoPlayer.Title", "Player.Filenameandpath", "VideoPlayer.MovieTitle", "VideoPlayer.TVShowTitle", "VideoPlayer.DBID", "VideoPlayer.Duration", "VideoPlayer.Season", "VideoPlayer.Episode", "VideoPlayer.DBID", "VideoPlayer.Year", "VideoPlayer.Rating", "VideoPlayer.mpaa", "VideoPlayer.Studio", "VideoPlayer.VideoAspect", "VideoPlayer.Plot", "VideoPlayer.RatingAndVotes", "VideoPlayer.Genre", "VideoPlayer.LastPlayed", "VideoPlayer.IMDBNumber", "ListItem.DBID", "Container.FolderPath", "Container.FolderName", "Container.PluginName", "ListItem.TVShowTitle", "ListItem.FileNameAndPath"]}, "id":1}')
 	json_object  = json.loads(json_result)
 	title = ''
+	Player_Filenameandpath = json_object['result']['Player.Filenameandpath']
 	imdb_id = json_object['result']['VideoPlayer.IMDBNumber']
 	if imdb_id == '':
 		try: 
@@ -196,7 +200,6 @@ class XBMCPlayer( xbmc.Player ):
                     prev_ep_num = ""
                     wacthed = 1
                 xbmc.log("PLAYBACK STARTED %s" % time.time() + '  ,'+str(dbID)+'=dbID, '+str(duration)+'=duration, '+str(tv_show_name)+'=tv_show_name, '+str(season_num)+'=season_num, '+str(ep_num)+'=ep_num, '+str(title)+', '+str(movie_title)+ '  ,'+str(movie_id)+'=movie_ID'+', '+str(prev_ep_num)+'=prev_ep_num', level=xbmc.LOGNOTICE)
-
 #		xbmc.log(str(wacthed)+'=watched status, '+str(movie_id)+'=dbID', level=xbmc.LOGNOTICE)
 
                 if str(movie_id) != str(-1):
@@ -255,6 +258,39 @@ class XBMCPlayer( xbmc.Player ):
                             json_object  = json.loads(json_result)
                             xbmc.log(str(json_object)+'=episode marked watched, '+str(dbID)+'=dbID', level=xbmc.LOGNOTICE)
                             watched = 1
+####################################
+			    playlist = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
+			    xbmc.log(str(duration)+' duration ===SERVICE_NEXT_PLAYLIST', level=xbmc.LOGNOTICE)
+			    xbmc.log(str(Player_Filenameandpath)+' ===SERVICE_NEXT_PLAYLIST', level=xbmc.LOGNOTICE)
+
+#			    if playlist.size() == 0:
+			    if not 'seren' in Player_Filenameandpath:
+				playlist.clear()
+				import sqlite3
+				con = sqlite3.connect(db_path)
+				cur = con.cursor()
+				sql_result = cur.execute("SELECT strtitle, c12, c13, * from episode_view where idshow in (SELECT idshow from episode_view where idepisode = " + str(dbID) + ") and idepisode > " + str(dbID) + "  order by c05 limit 1").fetchall()
+				strm_title = sql_result[0][0] + " - S" + str(sql_result[0][1]).zfill(2) + "E" + str(sql_result[0][2]).zfill(2) + " - " + sql_result[0][5]
+				global next_url
+				next_url = "plugin://plugin.video.themoviedb.helper?info=play4&amp;type=episode&amp;query=" + sql_result[0][0] + "&amp;season=" + str(sql_result[0][1]) + "&amp;episode=" + str(sql_result[0][2])
+				listitem = xbmcgui.ListItem(strm_title, thumbnailImage=sql_result[0][11].replace('<thumb>','').replace('</thumb>',''))
+				listitem.setInfo('video', {'Title': strm_title, 'Genre': sql_result[0][38]})
+				listitem.setInfo('videos', {'mediatype' : 'episode'})
+				playlist.add(url=next_url, listitem=listitem, index=0)
+				playlist.add(url=next_url, listitem=listitem, index=1)
+				playlist.add(url=next_url, listitem=listitem, index=2)
+				cur.close()
+
+				xbmc.log(str(next_url)+' added to playlist===SERVICE_NEXT_PLAYLIST', level=xbmc.LOGNOTICE)
+				while player.isPlayingVideo()==1:
+					player_time = player.getTime()
+					percentage = (player_time / duration) * 100
+					if percentage > 99 or player_time > (duration - 16):
+						break
+					xbmc.sleep(500)
+			     	xbmc.executebuiltin('RunPlugin(%s)' % next_url)
+#				break
+#				playlist.clear()
 #                            break
 
 #            tag = xbmc.Player().getVideoInfoTag()
@@ -273,6 +309,8 @@ class XBMCPlayer( xbmc.Player ):
 #        Will be called when xbmc stops playing a file
 #        xbmc.log(str(player.isPlayingVideo()==True)+"%s" % time.time(), level=xbmc.LOGNOTICE)
 #        xbmc.log("PLAYBACK ENDED %s" % time.time(), level=xbmc.LOGNOTICE)
+	xbmc.log(str(next_url)+' next_url===SERVICE_NEXT_PLAYLIST', level=xbmc.LOGNOTICE)
+     	xbmc.executebuiltin('RunPlugin(%s)' % next_url)
         kodi_playlist_generate()
 
     def onPlayBackStopped( self ):
