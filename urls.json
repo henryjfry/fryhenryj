@@ -1,0 +1,183 @@
+{
+  "trackers": {
+    "cached": { "search": "", "domains": [{ "base": "" }] },
+      "-7torrents": { "search": "", "domains": [{ "base": "" }] },
+      "bitlord": {
+          "search": "/get_list",
+          "domains": [
+              { "base": "https://bitlordsearch.com" }
+          ]
+      },
+      "bitsearch": {
+          "search": "/search?q=%s&sort=size",
+          "domains": [
+              { "base": "https://bitsearch.to" }
+          ]
+      },
+      "-bitcq": { "search": "", "domains": [{ "base": "" }] },
+      "-bt4g": { "search": "", "domains": [{ "base": "" }] },
+      "-btdb": { "search": "", "domains": [{ "base": "" }] },
+      "btdig": {
+          "search": "/search?q=%s",
+          "domains": [
+              { "base": "https://www.btdig.com" }
+          ]
+      },
+      "-btscene": { "search": "", "domains": [{ "base": "" }] },
+      "-ext": { "search": "", "domains": [{ "base": "" }] },
+      "-extratorrent": { "search": "", "domains": [{ "base": "" }] },
+      "eztv": {
+          "search": "/api/get-torrents?limit=100&imdb_id=%s",
+          "domains": [
+              { "base": "https://eztv.re" },
+              { "base": "https://eztv.ag" },
+              { "base": "https://eztv.it" },
+              { "base": "https://eztv.ch" },
+              { "base": "https://eztv.unblocked.llc" }
+          ]
+      },
+      "glo": {
+          "search": "/search_results.php?search=%s&cat={{category}}&incldead=0&inclexternal=0&lang=1&sort=seeders&order=desc",
+          "cat_movie": "1",
+          "cat_episode": "41",
+          "domains": [
+              { "base": "https://glodls.to" },
+              { "base": "https://gtdb.to" },
+              { "base": "https://glotorrents.unblockit.link" }
+          ]
+      },
+      "kickass": {
+          "search": "/usearch/%s category:{{category}}/",
+          "cat_movie": "movies",
+          "cat_episode": "tv",
+          "domains": [
+              { "base": "https://kickass.id" },
+              { "base": "https://kickass.love" },
+              { "base": "https://kickass.name" },
+              { "base": "https://kickass.earth" },
+              { "base": "https://kickass.kim" },
+              { "base": "https://thekat.app" },
+              { "base": "https://kat.li" },
+              { "base": "https://thekat.info" },
+              { "base": "https://kickass.cm" },
+              { "base": "https://kat.how" },
+              { "base": "https://kickass.vc" },
+              { "base": "https://kickass2.biz" },
+              { "base": "https://kickass2.st" }
+          ]
+      },
+      "leet": {
+          "search": "/sort-category-search/%s/{{category}}/seeders/desc/1/",
+          "cat_movie": "Movies",
+          "cat_episode": "TV",
+          "domains": [
+              { "base": "https://1337x.to" },
+              { "base": "https://1337x.unblocked.llc" },
+              { "base": "https://1337x.st" },
+              { "base": "https://x1337x.ws" },
+              { "base": "https://x1337x.eu" },
+              { "base": "https://x1337x.se" },
+              { "base": "https://1337x.is" }
+          ]
+      },
+
+      "rutor": {
+          "search": "/search/0/0/000/0/%s",
+          "cat_movie": "movies",
+          "cat_episode": "tv",
+          "domains": [
+              { "base": "http://rutor.is" }
+          ]
+      },
+
+      "lime": {
+          "search": "/search/{{category}}/%s/seeds/1/",
+          "cat_movie": "movies",
+          "cat_episode": "tv",
+          "domains": [
+              { "base": "https://www.limetorrents.info" },
+              { "base": "https://www.limetorrents.asia" },
+              { "base": "https://www.limetorrents.zone" }
+          ]
+      },
+      "magnetdl": {
+          "search": "/%s/%s/se/desc/",
+          "domains": [
+              { "base": "https://www.magnetdl.com" },
+              { "base": "https://torrentquest.com" }
+          ]
+      },
+      "-movcr": { "search": "", "domains": [{ "base": "" }] },
+      "nyaa": {
+          "search": "/?f=0&c=1_0&q=%s",
+          "domains": [
+              { "base": "https://nyaa.si" }
+          ]
+      },
+      "piratebay": {
+          "search": "/q.php?q=%s&cat={{category}}",
+          "cat_movie": "207,202,201",
+          "cat_episode": "208,205",
+          "domains": [
+              { "base": "https://apibay.org" }
+          ]
+      },
+      "showrss": {
+          "search": "/browse",
+          "domains": [
+              { "base": "https://showrss.info" }
+          ]
+      },
+      "-skytorrents": { "search": "", "domains": [{ "base": "" }] },
+      "-solidtorrents": { "search": "", "domains": [{ "base": "" }] },
+      "torrentapi": {
+          "search": "&mode=search&search_string=%s&token=%s&sort=seeders&ranked=0&limit=100&format=json_extended",
+          "domains": [
+              { "base": "https://torrentapi.org/pubapi_v2.php?app_id=Torapi" }
+          ]
+      },
+      "torrentdownload": {
+        "search": "/searchs?q=%s",
+        "domains": [
+            { "base": "https://www.torrentdownload.info" }
+        ]
+      },
+      "-torrentdownloads": { "search": "", "domains": [{ "base": "" }] },
+      "torrentgalaxy": {
+          "search": "/torrents.php?&search=%s&nox=1&sort=seeders&order=desc",
+          "domains": [
+              { "base": "https://torrentgalaxy.su" },
+              { "base": "https://torrentgalaxy.to" },
+              { "base": "https://torrentgalaxy.mx" }
+          ]
+      },
+      "-torrentparadise": { "search": "", "domains": [{ "base": "" }] },
+      "torrenttm": { "search": "", "domains": [{ "base": "" }] },
+      "torrentio": {
+          "search": "/stream/{{category}}/%s.json",
+          "cat_movie": "movie",
+          "cat_episode": "series",
+          "domains": [
+              { "base": "https://torrentio.strem.fun" }
+          ]
+      },
+      "torrentz2": {
+          "search": "/data.php?q=%s",
+          "domains": [
+              { "base": "https://torrentz2.pics" }
+          ]
+      },
+      "-torrentz2_": { "search": "", "domains": [{ "base": "" }] },
+      "yts": {
+          "search": "/api/v2/list_movies.json?query_term=%s",
+          "domains": [
+              { "base": "https://yts.mx" }
+          ]
+      },
+      "-zooqle": { "search": "", "domains": [{ "base": "" }] }
+  },
+  "hosters": {
+      "-rlsbb": { "search": "", "domains": [{ "base": "" }] },
+      "-scenerls": { "search": "", "domains": [{ "base": "" }] }
+  }
+}
